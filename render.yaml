@@ -1,0 +1,30 @@
+services:
+  - type: worker
+    name: bot-whatsapp-grupos
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: whatsapp-bot-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATA_DIR
+        value: /var/data
+      - key: PREFIX
+        value: "!"
+      - key: ANTI_LINK
+        value: "true"
+      - key: ANTI_SPAM
+        value: "true"
+      - key: SPAM_LIMIT
+        value: "6"
+      - key: SPAM_WINDOW_MS
+        value: "10000"
+      - key: FLOOD_LIMIT
+        value: "3"
+      - key: WELCOME_DEFAULT
+        value: "true"
